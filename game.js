@@ -1,7 +1,7 @@
 kaboom({
     global: true,
     fullscreen: true,
-    scale: 1,
+    scale: 2,
     debug: true,
     clearColor: [0, 0, 0, 1],
 })
@@ -36,12 +36,12 @@ scene("game", () => {
     const map = [
         '                             ',
         '                             ',
+        '     $                       ',
+        '    ==    =*=%=              ',
         '                             ',
         '                             ',
         '                             ',
-        '                             ',
-        '                             ',
-        '                             ',
+        '           ^        ^     () ',
         '================= ======  ===',
     ]
 
@@ -51,10 +51,19 @@ scene("game", () => {
         width: 20,
         height: 20,
         // setting signs for sprites
-        '=': [sprite('block', solid())]
+        '=': [sprite('block'), solid()],
+        '$': [sprite('coin')],
+        '%': [sprite('suprise'), solid(), 'coin-suprise'],
+        '*': [sprite('suprise'), solid(), 'mushroom-suprise'],
+        '}': [sprite('unboxed'), solid()],
+        '(': [sprite('pipe-bottom-left'), solid()],
+        ')': [sprite('pipe-bottom-right'), solid()],
+        '-': [sprite('pipe-top-left'), solid()],
+        '-': [sprite('pipe-top-right'), solid()],
     }
 
     // 'addlevel()' is a Kaboom method
+    // creates game level out of our level configuration ('levelCfg')
     const gameLevel = addLevel(map, levelCfg);
 
 })
